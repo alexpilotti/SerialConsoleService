@@ -20,8 +20,8 @@ This will start Putty and connect it to the COM1 port of your VM. On the VM side
 SerialConsoleService spawns a command prompt and redirects the serial I/O to teh process.
 
 
-INSTALLATION
-============
+Install
+=======
 
 Add .Net x64 if not already configured:
 
