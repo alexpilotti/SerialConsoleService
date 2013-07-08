@@ -17,7 +17,7 @@ Note: this requires putty.exe available in C:\Tools, modify the script to match 
 Get-ComPortConsole "VM_Name"
 
 This will start Putty and connect it to the COM1 port of your VM. On the VM side, the 
-SerialConsoleService spawns a command prompt and redirects the serial I/O to teh process.
+SerialConsoleService spawns a command prompt and redirects the serial I/O to the process.
 
 
 Install
