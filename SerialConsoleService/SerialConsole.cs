@@ -120,6 +120,7 @@ namespace Cloudbase.SerialConsole
             startInfo.RedirectStandardInput = true;
             startInfo.ErrorDialog = false;
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            // TODO: Cannot directly use different credentials in a Windows service. Find an alternative.
             //startInfo.UserName = username;
             //startInfo.Password = password;
             startInfo.LoadUserProfile = true;
