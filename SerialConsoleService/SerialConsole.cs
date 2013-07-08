@@ -90,7 +90,7 @@ namespace Cloudbase.SerialConsole
                     SecureString password;
                     GetCredentials(port, out username, out password);
 
-                    SpawnPS(port, username, password);
+                    SpawnProcess(port, username, password);
 
                     port.WriteLine("");
                     port.WriteLine("");
@@ -108,7 +108,7 @@ namespace Cloudbase.SerialConsole
             }
         }
 
-        void SpawnPS(SerialPort port, string username, SecureString password)
+        void SpawnProcess(SerialPort port, string username, SecureString password)
         {
             string retMessage = String.Empty;
             ProcessStartInfo startInfo = new ProcessStartInfo();
