@@ -1,10 +1,10 @@
 SerialConsoleService
 ====================
 
-Attached a command prompt to a serial console, excellent for troubleshooting a virtual machine 
+Attaches a command prompt to a serial console, excellent for troubleshooting a virtual machine 
 without graphical console access.
 
-E.g. on Hyper-V you can use a simple Powershell script on the host:
+As an example on Hyper-V you can use a simple Powershell script on the host:
 
 function Get-ComPortConsole($vmname) {
     $pipename = "\\.\pipe\" + [guid]::NewGuid().ToString()
