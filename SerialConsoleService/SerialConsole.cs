@@ -33,14 +33,17 @@ namespace Cloudbase.SerialConsole
             {
                 var buf = new byte[1024];
                 var read = port.BaseStream.Read(buf, 0, buf.Length);
-                if (echo)
-                    port.BaseStream.Write(buf, 0, read);
+                if (read > 0)
+                {
+                    if (echo)
+                        port.BaseStream.Write(buf, 0, read);
 
-                // TODO check for newlines in the array
-                if (buf[0] == 0xd)
-                    done = true;
-                else
-                    sb.Append(Encoding.UTF8.GetString(buf, 0, read));
+                    // TODO check for newlines in the array, not only at the end
+                    if (buf[read - 1] == 0xd)
+                        done = true;
+                    else
+                        sb.Append(Encoding.UTF8.GetString(buf, 0, read));
+                }
             }
 
             return sb.ToString();
@@ -153,13 +156,16 @@ namespace Cloudbase.SerialConsole
                     var buf = new byte[1024];
                     var read = port.BaseStream.Read(buf, 0, buf.Length);
 
-                    port.BaseStream.Write(buf, 0, read);
-                    p.StandardInput.BaseStream.Write(buf, 0, read);
-                    if (buf[0] == 0xd)
-                        p.StandardInput.BaseStream.Write(new byte[] { 10 }, 0, 1);
+                    if (read > 0)
+                    {
+                        port.BaseStream.Write(buf, 0, read);
+                        p.StandardInput.BaseStream.Write(buf, 0, read);
+                        if (buf[read - 1] == 0xd)
+                            p.StandardInput.BaseStream.Write(new byte[] { 10 }, 0, 1);
 
-                    p.StandardInput.BaseStream.Flush();
-                    port.BaseStream.Flush();
+                        p.StandardInput.BaseStream.Flush();
+                        port.BaseStream.Flush();
+                    }
                 }
             });
             t3.Start();
